@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operaciones CRUD 🚀</title>
+     <script src="https://cdn.tailwindcss.com"></script> 
+
+     <style>
+    /* header{ color: red} selector por nombre, de la tag
+        #loader{color: blue } selector del id
+        .loader {} selector de la clase */
+
+        .loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #000;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
+     </style>
+</head>
+<!-- <body class="bg-[linear-gradient(90deg,rgba(53,172,219,1)0%,rgba(197,222,208,1)51%,rgba(212,93,196,1)99%);]"> -->
+<body class="bg-[linear-gradient(90deg,rgba(43,57,217,0.7)_0%,rgba(255,255,255,1)_13%,rgba(255,255,255,1)_51%,rgba(255,255,255,1)_66%,rgba(255,255,255,1)_90%,rgba(43,57,217,0.7)_100%)]">
+    <main>
+        <h1 class="text-center p-4 m-4 text-4xl font-bold text-blue-700">🚀CRUD - Usuarios</h1>
+        <section class="flex flex-col xl:flex-row pag-[50px] justify-center items-center">
+           <!--* FORMULARIO -->
+            <div class="h-screen w-full mx-auto xl:w-[40%]">
+                <div class="min-h-screen py-6 flex flex-col justify-center sm:py-12">
+                    <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-indigo-700 to-purple-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
+                        </div>
+                        <div class="text-white relative px-4 py-10 bg-indigo-400 shadow-lg sm:rounded-3xl sm:p-20">
+
+                            <!-- * agregamos id para manipular al click sobre "Editar" <p id="titleForm"  -->
+                            <div class="text-center pb-6">
+                                <h1 class="text-3xl">Formulario de Usuarios</h1>
+
+                                <p id="titleForm" class="text-gray-300">
+                                    LLENA LOS CAMPOS Y CREAR AL USUARIO
+                                </p>
+                            </div>
+
+                            <!-- * agregamos id para manipular al click sobre "Editar" <p id="titleForm"  -->
+                            <form id="form">
+                                <!--? el input hidden name === id, va a formar parte formData(form), y sera posible porque tiene el attrb "name" -->
+                                <!--? al hacer POST el va existir pero vacio, pq el usuario NO LO DEBE LLEVAR. -->
+                                <!--? al hacer UPDATE sera campo === id, o sea el id del ususario de la BDD. -->
+                                <input type="hidden" name="id">
+                                <input
+                                        class="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        type="text" placeholder="Nombre" name="nombre"  id="nombre" required>
+
+                                <input
+                                        class="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        type="number" placeholder="Edad" name="edad" id="edad" required>
+
+                                <input
+                                        class="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        type="number" placeholder="Indique % de Aceptacion" name="aceptacion" id="aceptacion" required>
+                                
+                                <input
+                                        class="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        type="email" placeholder="Email" name="email" id="email">
+                                <input
+                                        class="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                       type="text" placeholder="Url de la img" name="foto" id="foto" required>
+
+                                        <!-- 3. INPUTS -->
+                                        <!--TODO: type="text" placeholder="Nombre" name="nombre" id="nombre" -->
+                                        <!--TODO: type="number" placeholder="Edad" name="edad" id="edad" -->
+                                        <!--TODO:  type="number" placeholder="Indique % de Aceptacion" name="aceptacion" id="aceptacion" -->
+                                        <!--TODO:  type="email" placeholder="Email" name="email" id="email"> -->
+                                        <!--TODO:  type="text" placeholder="Url de la img" name="foto" id="foto" required> -->  
+
+                                 <!--& DIV DE LOS RADIOS -->
+                                <div class="p-4">
+                                        <p class="text-lg font-semibold mb-2">Cual es tu genero</p>
+                                        <div class="flex items-center mb-4">
+                                            <input type="radio" id="mujer" name="genero" value="true" class="mr-2">
+                                            <label for="mujer">Mujer</label>
+                                        </div>
+
+                                        <div class="flex items-center mb-4">
+                                            <input type="radio" id="hombre" name="genero" value="false" class="mr-2">
+                                            <label for="hombre">Hombre</label>
+                                        </div>
+                                    <!--? SON 2 inputs type=radio QUE TIENEN EL MISMO name="genero", sera nuestro selector para capturar su valor -->
+                                </div>
+
+                                <!--* bootonera: agregamos el id del boton submit! -->
+                                <div class="flex justify-between">
+                                    <input
+                                        class="shadow bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                        type="submit"
+                                        id="btnSubmit" 
+                                        value="Enviar ➤">
+                                    <input
+                                        class="shadow bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                        type="reset">
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+             <!--* TABLA -->
+            <div class="h-screen w-full mx-auto xl:flex-1">
+
+
+                <!-- <div class="block w-full overflow-x-auto max-w-xl border"> -->
+                    <table class=" mt-[100px] xl:mt-8 w-[90%] border mx-auto items-center w-full bg-transparent border-collapse">
+                        <thead>
+                            <tr>
+                                <th
+                                    class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
+                                    Foto</th>
+                                <th
+                                    class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
+                                    Nombre</th>
+                                <th
+                                    class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
+                                    Edad</th>
+                                <th
+                                    class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
+                                    Genero</th>
+                               
+                                <th
+                                    class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
+                                    Email</th>
+                                <th
+                                    class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
+                                    % Aceptacion</th>
+                                <th
+                                    class="px-4 bg-gray-50 text-gray-700 align-middle py-3 text-xs font-semibold text-left uppercase border-l-0 border-r-0 whitespace-nowrap">
+                                    Acciones</th>
+                               
+                            </tr>
+                        </thead>
+
+                        <tbody id="tbody" class="divide-y divide-gray-100">
+                            <tr id="trLoader">
+                                <td class="text-center" colspan="7"><span class="loader"></span></td>
+                            </tr>
+                          
+                        </tbody>
+                    </table>
+                <!-- </div> -->
+            </div>
+        </section>
+
+    </main>
+    <script src="./script.js"> </script>
+    <!-- <script src="./wednesday.js"> </script> -->
+</body>
+</html>

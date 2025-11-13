@@ -1,0 +1,28 @@
+# Node modules (paquetes instalados)
+node_modules/
+
+# Directorios de build o distribución
+dist/
+build/
+
+# Archivos de logs
+*.log
+
+# Configuraciones de entorno y secret files
+.env
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Configuraciones de IDEs y editores
+.vscode/
+.idea/
+
+# Archivos temporales o de backup
+*~
+
+# Otros
+/scriptDos.js
+/wednesday.js
+.qodo/
