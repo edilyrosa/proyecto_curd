@@ -91,7 +91,7 @@ function editUser(id){
                     //*Atrapa la referencia del input correspondiente, mediante el campo
                    const $input = document.querySelector(`[name="${campo}"]`)
                     if($input){
-                        if($input.type === 'radio' && campo === 'genero')
+                        if($input.type === "radio" && campo === 'genero')
                             document.querySelector(`[name="genero"][value="${value.toString()}"]`).checked = true
                         else $input.value = value
                     }
